@@ -2,10 +2,10 @@
   
     
         "post0": {
-            "title": "Things",
-            "content": "Fastpages Notebook Blog Post . A test run of a new notebook based posting! toc: true badges: true comments: true categories: [jupyter] . from functools import partial from operator import sub . . subtract_map = partial(map, sub) . k = [1,2,3,4,5,6] list(subtract_map(k, reversed(k[1:]))) . [-5, -3, -1, 1, 3] .",
-            "url": "https://pcapel.github.io/thoughts-and-things/2021/12/02/testeroni.html",
-            "relUrl": "/2021/12/02/testeroni.html",
+            "title": "My own Notebook Blog Post!",
+            "content": "Things . These are some things that are in the blog now . Sub heading things . I don&#39;t know how this should work... . What this is . I&#39;m going to try some of the things the tutorial mentions. Like having some code and outputs! . from functools import partial from operator import sub . . subtract_map = partial(map, sub) . k = [1,2,3,4,5,6] list(subtract_map(k, reversed(k[1:]))) . [-5, -3, -1, 1, 3] . The above is a neat little thing that I did once. .",
+            "url": "https://pcapel.github.io/thoughts-and-things/jupyter/2021/12/02/testeroni.html",
+            "relUrl": "/jupyter/2021/12/02/testeroni.html",
             "date": " • Dec 2, 2021"
         }
         
