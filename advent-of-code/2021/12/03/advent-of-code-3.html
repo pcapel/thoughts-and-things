@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Advent of Code 2021 - Day 3 | Thoughts on Things</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Advent of Code 2021 - Day 3" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="My solution and thoughts" />
+<meta property="og:description" content="My solution and thoughts" />
+<link rel="canonical" href="https://pcapel.github.io/thoughts-and-things/advent-of-code/2021/12/03/advent-of-code-3.html" />
+<meta property="og:url" content="https://pcapel.github.io/thoughts-and-things/advent-of-code/2021/12/03/advent-of-code-3.html" />
+<meta property="og:site_name" content="Thoughts on Things" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-03T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Advent of Code 2021 - Day 3" />
+<script type="application/ld+json">
+{"url":"https://pcapel.github.io/thoughts-and-things/advent-of-code/2021/12/03/advent-of-code-3.html","headline":"Advent of Code 2021 - Day 3","dateModified":"2021-12-03T00:00:00-06:00","datePublished":"2021-12-03T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://pcapel.github.io/thoughts-and-things/advent-of-code/2021/12/03/advent-of-code-3.html"},"description":"My solution and thoughts","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/thoughts-and-things/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://pcapel.github.io/thoughts-and-things/feed.xml" title="Thoughts on Things" /><link rel="shortcut icon" type="image/x-icon" href="/thoughts-and-things/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/thoughts-and-things/">Thoughts on Things</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/thoughts-and-things/about/">About Me</a><a class="page-link" href="/thoughts-and-things/search/">Search</a><a class="page-link" href="/thoughts-and-things/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Advent of Code 2021 - Day 3</h1><p class="page-description">My solution and thoughts</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-03T00:00:00-06:00" itemprop="datePublished">
+        Dec 3, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      14 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/thoughts-and-things/categories/#advent-of-code">advent-of-code</a>
+        
+      
+      </p>
+    
+
+    
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-12-03-advent-of-code-3.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Day-3">Day 3<a class="anchor-link" href="#Day-3"> </a></h1><p>On the third day of <a href="https://adventofcode.com/2021/day/3">AoC</a> my data gave to me... a long list of binary.</p>
+<h2 id="Part-1">Part 1<a class="anchor-link" href="#Part-1"> </a></h2><p>This problem is to use a list of binary to generate two binary numbers, then multiply them. That means that this could be done without converting the list to actual binary, though there's probably a clever way to get the answer if we do.</p>
+<p>The first number is composed of the most common bit from each position. So if we have:</p>
+
+<pre><code>1011
+0010
+0110</code></pre>
+<p>Then we would build the number <code>0010</code>, since those are the most common bits in each column position. The second number is made from the <em>least</em> common bit, which just means that we flip the bits of the first and boom, we have it.</p>
+<p>With that said, let's build a simple solution:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;../assets/inputs/aoc/2021/day_3.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">data_file</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">data_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">lines</span><span class="p">[:</span><span class="mi">3</span><span class="p">],</span> <span class="n">lines</span><span class="p">[</span><span class="mi">997</span><span class="p">:])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[&#39;001001100101&#39;, &#39;010100011100&#39;, &#39;100000110001&#39;]</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[&#39;011000110110&#39;, &#39;101110011011&#39;, &#39;110101100001&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>side note:</strong> I don't think that we're going to get the opportunity to do so here, but you might be interested in trying to figure out how you could re-write any of these answers such that we aren't required to read the whole data set into memory. It's a fun challenge!</p>
+<p>So now we have our lines, and the naive approach is just sitting there waiting for us! What we would need to do if we did this by hand is mark down a count of each bit in each position. I migth use tally marks, but since we're pythonistas we could use a collections counter. The only issue is that we want to use it on the columns.</p>
+<p>Because the data we want is column-wise and we left the values as strings, we <em>could</em> just iterate the list a few times to get it. I'm lazy, so I'm going to do that first.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="n">elem_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">list_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[[</span><span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">list_len</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">elem_len</span><span class="p">)]</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="n">Counter</span><span class="p">(</span><span class="n">column</span><span class="p">)</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">]</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>[Counter({&#39;0&#39;: 528, &#39;1&#39;: 472}),
+ Counter({&#39;0&#39;: 479, &#39;1&#39;: 521}),
+ Counter({&#39;1&#39;: 485, &#39;0&#39;: 515}),
+ Counter({&#39;0&#39;: 499, &#39;1&#39;: 501}),
+ Counter({&#39;0&#39;: 495, &#39;1&#39;: 505}),
+ Counter({&#39;1&#39;: 515, &#39;0&#39;: 485}),
+ Counter({&#39;1&#39;: 512, &#39;0&#39;: 488}),
+ Counter({&#39;0&#39;: 502, &#39;1&#39;: 498}),
+ Counter({&#39;0&#39;: 507, &#39;1&#39;: 493}),
+ Counter({&#39;1&#39;: 507, &#39;0&#39;: 493}),
+ Counter({&#39;0&#39;: 504, &#39;1&#39;: 496}),
+ Counter({&#39;1&#39;: 481, &#39;0&#39;: 519})]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ok, we have the positional counts of each thing like we might do by hand. We just need to transform this into an actual value, or two. These will need to be multiplied, so we better make them actual binary values. Then we'll need to positionally set their bits. We could also just compute the binary value as a string and use the <code>int</code> function, but this method does a little bitwise operator fun that I think is interesting to try out once in a while:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">powers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">**</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">elem_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">counts</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">count</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">count</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">]:</span>
+        <span class="n">gamma</span> <span class="o">|=</span> <span class="n">powers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">epsilon</span> <span class="o">|=</span> <span class="n">powers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">gamma</span> <span class="o">*</span> <span class="n">epsilon</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>3901196</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We spin up a list of the powers of two, or each position's bit value of 1. We want to step through these in reverse order, since the puzzle considers the first bit to be the largest value. Then we use a bitwise-or on the current value, and since we start out with 0 and are moving in descending order, we know we're going to flip a 0 to a 1 for whichever number needs to be altered.</p>
+<p>Part 1 is done! This is probably the least efficient way that I could do this, but we have an answer.</p>
+<h2 id="Part-2">Part 2<a class="anchor-link" href="#Part-2"> </a></h2><p>Part two introduces a crazy new approach. We need to parse the list down to a single number, but instead of looking at the most common bit to keep that bit, we're going to look at the most/least common bit and keep all the numbers. This process will then be applied to this new, shorter list. There are two values that we want to produce this way: <code>og_rating</code> and <code>cs_rating</code>. I picked these variables based on the fact that they're called (O)xygen (G)enerator rating and (C)O2 (S)crubber rating in the puzzle. The rules for generation are as follows:</p>
+<p>The <code>og_rating</code> asks us to keep the values with a 1 in the position we're evaluating if 0 and 1 appear evenly.
+The <code>cs_rating</code> asks us to keep the values with a 0 in the position we're evaluating if 0 and 1 appear evenly.
+The <code>og_rating</code> will keep numbers whose value in the current position is the <strong>most common bit</strong>
+The <code>cs_rating</code> will keep numbers whose value in the current position is the <strong>least common bit</strong></p>
+<p><strong>side note:</strong> These rules ensure that we will always shrink the list. However, it does strike me that you might be able to compose a list that doesn't get reduced to a single value in the course of applying this rule. I wonder what that might look like? What are the limits on the size of the list vs the size of it's elements such that you might be able to guarantee a value is generated?</p>
+<p>The thing that we notice here is that the process we used before lost a lot of information. That is, my <code>counts</code> variable is useless for this part of the challenge. I know the most common bit, but I lost the relationship to the individual numbers in the list. Thankfully, the input here is small, so I can just iterate the numbers to create a new list based on the knowledge of what the most common things are. But then I'll need to create <em>new</em> positional counts. So is that really the best way?</p>
+<p>The common problem here is to find the most common bit for a given position and a list of binary values. So we should try and do that as efficiently as possible:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">most_common_for_position</span><span class="p">(</span><span class="n">bin_values</span><span class="p">,</span> <span class="n">position</span><span class="p">):</span>
+    <span class="n">zero_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ones_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">bn</span> <span class="ow">in</span> <span class="n">bin_values</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">bn</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span>
+            <span class="n">zero_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ones_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">zero_count</span> <span class="o">&gt;</span> <span class="n">ones_count</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;0&#39;</span>
+    <span class="k">elif</span> <span class="n">ones_count</span> <span class="o">&gt;</span> <span class="n">zero_count</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;1&#39;</span>
+    <span class="k">elif</span> <span class="n">ones_count</span> <span class="o">==</span> <span class="n">zero_count</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;eq&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The tricky part here is that we're using 0-indexing. I find that switching to that thinking early in the process is helpful because python itself is 0-indexed. If we were using Julia, or another 1-indexed language, then we could rely on the concept. That said, problems that are one indexed in their language are always something to look out for. You know what they say, there are 2 hard problems in computer science: cache invalidation, naming things, and off-by-one errors...</p>
+<p>At any rate, I went ahead and added an explicit case for the equality of the numbers. This will come in handy for that tie-breaker rule set. At this point it might be nice to validate our function by soliving part one again but in a different way:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">invert</span><span class="p">(</span><span class="n">str_bin</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;0&#39;</span> <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span> <span class="k">else</span> <span class="s1">&#39;1&#39;</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">str_bin</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">to_num</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        
+<span class="n">gamma</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">elem_len</span><span class="p">):</span>
+    <span class="n">gamma</span> <span class="o">+=</span> <span class="n">most_common_for_position</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="n">epsilon</span> <span class="o">=</span> <span class="n">invert</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">to_num</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span> <span class="o">*</span> <span class="n">to_num</span><span class="p">(</span><span class="n">epsilon</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>3901196</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I would have used a binary operator for the inversion, but with signed binary numbers it was being weird. I'm not used to dealing with binary, so I just opted to write a simple helper to deal with it. But we see that the function works!</p>
+<p>At this point we have a few steps to follow:</p>
+<ol>
+<li>Get the most common value for the position</li>
+<li>Filter the list into a new list</li>
+</ol>
+<p>Then we do it again, but with the position incremented. There are two ways to implement this type of logic: iterarive, and recursive. I tend to prefer iteration over recursion in python due to the stack size. I also find that things defined recursively are used easily as iterators, which are easiest to implement as iterative. So I'd even implement fibonacci numbers this way. So let's get the <code>og_rating</code> sorted:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">position</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">binary_list</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">most_common</span> <span class="o">=</span> <span class="n">most_common_for_position</span><span class="p">(</span><span class="n">binary_list</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">most_common</span> <span class="o">==</span> <span class="s1">&#39;eq&#39;</span><span class="p">:</span>
+        <span class="n">keep</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">keep</span> <span class="o">=</span> <span class="n">most_common</span>
+
+    <span class="n">binary_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">binary_list</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">==</span> <span class="n">keep</span><span class="p">]</span>
+    <span class="n">position</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">og_rating</span> <span class="o">=</span> <span class="n">binary_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">og_rating</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>&#39;011001100111&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We use essentially the same logic for the <code>cs_rating</code> but we insert a bit flip for the concept of "least common" in the <code>cs_rating</code> specification. Of course, doing this with actual bits would be a "bit" better, but we have strings, so I'mma use strings.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">position</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">binary_list</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">most_common</span> <span class="o">=</span> <span class="n">most_common_for_position</span><span class="p">(</span><span class="n">binary_list</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">most_common</span> <span class="o">==</span> <span class="s1">&#39;eq&#39;</span><span class="p">:</span>
+        <span class="n">keep</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">keep</span> <span class="o">=</span> <span class="n">invert</span><span class="p">(</span><span class="n">most_common</span><span class="p">)</span>
+
+    <span class="n">binary_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">binary_list</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">==</span> <span class="n">keep</span><span class="p">]</span>
+    <span class="n">position</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">cs_rating</span> <span class="o">=</span> <span class="n">binary_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">to_num</span><span class="p">(</span><span class="n">og_rating</span><span class="p">)</span> <span class="o">*</span> <span class="n">to_num</span><span class="p">(</span><span class="n">cs_rating</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>4412188</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Boom! There we go!</p>
+<p>Now, this is obviously really ugly, and cleaning it up is an interesting prospect. The big issue is, we have a new list and new state related to it on every iteration. So we have to keep learning what the new most common or least common entry is for each position. If it weren't for that, we could filter the list with some globally accessible state. But alas...</p>
+<p>What we could do is wrap the whole thing in a function, but honestly that feels ugly too. Just look at this:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_rating</span><span class="p">(</span><span class="n">binary_input</span><span class="p">,</span> <span class="n">rating_type</span><span class="o">=</span><span class="s1">&#39;og_rating&#39;</span><span class="p">):</span>
+    <span class="n">position</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">binary_list</span> <span class="o">=</span> <span class="n">binary_input</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">most_common</span> <span class="o">=</span> <span class="n">most_common_for_position</span><span class="p">(</span><span class="n">binary_list</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">rating_type</span> <span class="o">==</span> <span class="s1">&#39;og_rating&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">most_common</span> <span class="o">==</span> <span class="s1">&#39;eq&#39;</span><span class="p">:</span>
+                <span class="n">keep</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">keep</span> <span class="o">=</span> <span class="n">most_common</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">most_common</span> <span class="o">==</span> <span class="s1">&#39;eq&#39;</span><span class="p">:</span>
+                <span class="n">keep</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+            <span class="k">elif</span> <span class="n">most_common</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+                <span class="n">keep</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">keep</span> <span class="o">=</span> <span class="s1">&#39;1&#39;</span>
+
+        <span class="n">binary_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">binary_list</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">==</span> <span class="n">keep</span><span class="p">]</span>
+        <span class="n">position</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+    <span class="k">return</span> <span class="n">binary_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">to_num</span><span class="p">(</span><span class="n">get_rating</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">rating_type</span><span class="o">=</span><span class="s1">&#39;cs_rating&#39;</span><span class="p">))</span> <span class="o">*</span> <span class="n">to_num</span><span class="p">(</span><span class="n">get_rating</span><span class="p">(</span><span class="n">lines</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>4412188</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is ugly. But so is what we're doing. Another option is to write the function, but give it the behavior we want by passing in a keep function. Then we remove the need for the <code>rating_type</code> param.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">og_rating_keep</span><span class="p">(</span><span class="n">most_common</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;1&#39;</span> <span class="k">if</span> <span class="n">most_common</span> <span class="o">==</span> <span class="s1">&#39;eq&#39;</span> <span class="k">else</span> <span class="n">most_common</span>
+    
+<span class="k">def</span> <span class="nf">cs_rating_keep</span><span class="p">(</span><span class="n">most_common</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;0&#39;</span> <span class="k">if</span> <span class="n">most_common</span> <span class="o">==</span> <span class="s1">&#39;eq&#39;</span> <span class="k">else</span> <span class="n">invert</span><span class="p">(</span><span class="n">most_common</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_rating_hof</span><span class="p">(</span><span class="n">binary_input</span><span class="p">,</span> <span class="n">keep_function</span><span class="p">):</span>
+    <span class="n">position</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">binary_list</span> <span class="o">=</span> <span class="n">binary_input</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">binary_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">most_common</span> <span class="o">=</span> <span class="n">most_common_for_position</span><span class="p">(</span><span class="n">binary_list</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+
+        <span class="n">binary_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">binary_list</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">==</span> <span class="n">keep_function</span><span class="p">(</span><span class="n">most_common</span><span class="p">)]</span>
+        <span class="n">position</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+    <span class="k">return</span> <span class="n">binary_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">to_num</span><span class="p">(</span><span class="n">get_rating_hof</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">cs_rating_keep</span><span class="p">))</span> <span class="o">*</span> <span class="n">to_num</span><span class="p">(</span><span class="n">get_rating_hof</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">og_rating_keep</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>4412188</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you're not familiar with <a href="https://en.wikipedia.org/wiki/Higher-order_function">higher order functions</a>, then this will be new to you. Otherwise, this is an excellent way to clean up logic that you want to know at call time. The hallmark for this is passing in a logical flag. Anytime that you do that, you could be using a higher order function. Some people might term this a "callback", but that's the function that is <em>given</em> to a higher order function.</p>
+<p>At any rate, this is probably the furthest I would go in trying to clean this up. We <em>could</em> go a step further though...</p>
+<p>We could try and generalize the filtering. What that means is that we have some rule that we want to apply to each successive iteration of the list itself. That might look something like this:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">apply_iterative_rule</span><span class="p">(</span><span class="n">some_list</span><span class="p">,</span> <span class="n">rule</span><span class="p">):</span>
+    <span class="n">list_copy</span> <span class="o">=</span> <span class="n">some_list</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">iteration</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_copy</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">list_copy</span> <span class="o">=</span> <span class="n">rule</span><span class="p">(</span><span class="n">list_copy</span><span class="p">,</span> <span class="n">iteration</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">list_copy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+<p>What we're defining here is the interface for the <code>rule</code> function. We know that to apply our current rule we need the current list state (<code>list_copy</code>) and the <code>position</code>. But position is the same as iteration, and iteration is more general.</p>
+<p>The next challenge is to come up with the <code>rule</code> function itself. It should basically look like the inside of our loop. After all, that's where it's being called essentially.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rating_rule</span><span class="p">(</span><span class="n">binary_list</span><span class="p">,</span> <span class="n">position</span><span class="p">):</span>
+    <span class="n">most_common</span> <span class="o">=</span> <span class="n">most_common_for_position</span><span class="p">(</span><span class="n">binary_list</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">binary_list</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">==</span> <span class="n">keep_function</span><span class="p">(</span><span class="n">most_common</span><span class="p">)]</span>
+</pre></div>
+<p>This is close, but we don't have the keep function, and in the context of this function, we don't control the call site. That's internal to <code>apply_iterative_rule</code>. If we were to change that to allow us to pass in a keep function, we'd kind of break the generality. A little bit of <a href="https://en.wikipedia.org/wiki/Currying">curry</a> could help the situation.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+
+<span class="k">def</span> <span class="nf">rule_base</span><span class="p">(</span><span class="n">keep_function</span><span class="p">,</span> <span class="n">binary_list</span><span class="p">,</span> <span class="n">position</span><span class="p">):</span>
+    <span class="n">most_common</span> <span class="o">=</span> <span class="n">most_common_for_position</span><span class="p">(</span><span class="n">binary_list</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">binary_list</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">==</span> <span class="n">keep_function</span><span class="p">(</span><span class="n">most_common</span><span class="p">)]</span>
+
+<span class="n">og_rating_rule</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">rule_base</span><span class="p">,</span> <span class="n">og_rating_keep</span><span class="p">)</span>
+<span class="n">cs_rating_rule</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">rule_base</span><span class="p">,</span> <span class="n">cs_rating_keep</span><span class="p">)</span>
+</pre></div>
+<p>Using <a href="https://docs.python.org/3/library/functools.html#functools.partial">partial</a> allows us to apply a function argument, but instead of erroring out if there are missing arguments, it just returns a callable object that will apply arguments to the original function definition. Let's see how this works:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+
+<span class="k">def</span> <span class="nf">rule_base</span><span class="p">(</span><span class="n">keep_function</span><span class="p">,</span> <span class="n">binary_list</span><span class="p">,</span> <span class="n">position</span><span class="p">):</span>
+    <span class="n">most_common</span> <span class="o">=</span> <span class="n">most_common_for_position</span><span class="p">(</span><span class="n">binary_list</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">binary_list</span> <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">==</span> <span class="n">keep_function</span><span class="p">(</span><span class="n">most_common</span><span class="p">)]</span>
+
+<span class="n">og_rating_rule</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">rule_base</span><span class="p">,</span> <span class="n">og_rating_keep</span><span class="p">)</span>
+<span class="n">cs_rating_rule</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">rule_base</span><span class="p">,</span> <span class="n">cs_rating_keep</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">apply_iterative_rule</span><span class="p">(</span><span class="n">some_list</span><span class="p">,</span> <span class="n">rule</span><span class="p">):</span>
+    <span class="n">list_copy</span> <span class="o">=</span> <span class="n">some_list</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">iteration</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_copy</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">list_copy</span> <span class="o">=</span> <span class="n">rule</span><span class="p">(</span><span class="n">list_copy</span><span class="p">,</span> <span class="n">iteration</span><span class="p">)</span>
+        <span class="n">iteration</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">list_copy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">to_num</span><span class="p">(</span><span class="n">apply_iterative_rule</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">og_rating_rule</span><span class="p">))</span> <span class="o">*</span> <span class="n">to_num</span><span class="p">(</span><span class="n">apply_iterative_rule</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">cs_rating_rule</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>4412188</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ok, so this <em>looks</em> really nice, but what immediately jumps out to me is that <code>apply_iterative_rule</code> depends on the rule actually reducing the list to a given value. That is, we can pass a perfectly operational rule to the function, and it will simply never terminate.</p>
+<p>How could we avoid this? The simplest way I can think is to pass in a limit to the function. Something like:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">apply_iterative_rule</span><span class="p">(</span><span class="n">ls</span><span class="p">,</span> <span class="n">rule</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
+    <span class="n">ls_copy</span> <span class="o">=</span> <span class="n">ls</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">iteration</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">ls_copy</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">limit</span><span class="p">:</span>
+        <span class="n">ls_copy</span> <span class="o">=</span> <span class="n">rule</span><span class="p">(</span><span class="n">list_copy</span><span class="p">,</span> <span class="n">iteration</span><span class="p">)</span>
+        <span class="n">iteration</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">ls_copy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+<p>This allows us to pass in the rule, and some expectation about it. But is there actually any guarantee that we'll terminate? It depends on the rule. Since the rule itself is decoupled from this, it feels risky to me. Essentially, we need a way to guarantee that all the rules that we pass in will decrease...</p>
+<p>I don't really know how one might do that. This is why I prefer stopping at the prior step. We generalized just enough to clean up the code and isolate the "business logic" of which thing we wanted to keep. We also kept the filtration logic visible within the loop that controls it. That means that we can, just by looking at the <code>get_rating_hof</code> function, be relatively sure that we'll terminate.</p>
+<h1 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion"> </a></h1><p>This was a fun one. It gave me a chance to use partials again, and I'm a huge fan of higher order functions. It feels like there may be a more general solution, but we will always sacrifice efficiency. On that note, it also seems like there is probably a pretty clever way to solve this in a super efficient way using some <a href="https://en.wikipedia.org/wiki/Fast_inverse_square_root">evil bit-level hacking</a>. I don't generally go in for that. The code solves the problem, and it does so quickly enough for me to write it up.</p>
+<p>I will, however, come back to the topic of termination. I feel like looking at the rules we're applying vs the input we take in is interesting enough to warrant that. As it is, our solution seems to depend on the fact that we're playing a game that must have a solution. In the real world, being able to tell if the data won't terminate is pretty valuable. I'll try to remember to update with a link to that when the time comes.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><a class="u-url" href="/thoughts-and-things/advent-of-code/2021/12/03/advent-of-code-3.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/thoughts-and-things/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/thoughts-and-things/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/thoughts-and-things/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Thoughts that occur in the mind of some guy</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
