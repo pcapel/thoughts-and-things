@@ -2,9 +2,10 @@
 toc: false
 badges: false
 comments: false
-description: Learning is hard...
+layout: post
+description: "Learning is hard..."
 categories: [advent-of-code, stream-of-consciousness]
-title: What I Want From The Advent of Code
+title: "What I Want From The Advent of Code"
 ---
 
 I learned about Advent of Code (AoC) for the first time back when I was first
