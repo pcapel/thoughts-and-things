@@ -3,7 +3,7 @@ toc: false
 badges: false
 comments: false
 description: Learning is hard...
-categories: [advent-of-code stream-of-consciousness]
+categories: [advent-of-code, stream-of-consciousness]
 title: What I Want From The Advent of Code
 ---
 
