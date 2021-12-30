@@ -1,3 +1,12 @@
+---
+toc: false
+badges: false
+comments: false
+description: Learning is hard...
+categories: [advent-of-code stream-of-consciousness]
+title: What I Want From The Advent of Code
+---
+
 I learned about Advent of Code (AoC) for the first time back when I was first
 learning to program. I'm a self-taught guy, insofar as such a thing exists, and
 it seemed like a neat thing. The trouble is, the problems are hard! I was
