@@ -20,6 +20,11 @@ publishing them if I push them up to the repo where people can read them. I'm
 far too anxious for that.
 
 Next, I'll create a branch and a PR for each post. This is just to ensure I
-don't break anything with the site building.
+don't break anything with the site building. However, switching around is going
+to be a pain. So I'll maintain a local branch called `outlines` where I flesh
+out posts.
+
+Once an outline is ready to be a full post, I'll check it out to its own branch
+where I'll merge it to master through a PR.
 
 I will strive for a weekly cadence, but I may not be able to keep it up.
